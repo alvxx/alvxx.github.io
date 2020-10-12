@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>在浏览器中输入网址，按下回车之后发生了什么？</title>
+    <title>常用的循环方式及遍历方法</title>
     <url>/2020/09/19/ergodic/</url>
     <content><![CDATA[<h1 id="常用的循环方式及遍历方法"><a href="#常用的循环方式及遍历方法" class="headerlink" title="常用的循环方式及遍历方法"></a>常用的循环方式及遍历方法</h1><h2 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h2><p>While 语句包括一个循环条件和一段代码块，只要条件为真，就不断循环执行代码块。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件) 语句;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">while</span> (条件) 语句;</span><br><span class="line"></span><br><span class="line"><span class="comment">//举例：</span></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">100</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;i 当前为：&quot;</span> + i);</span><br><span class="line">  i = i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
