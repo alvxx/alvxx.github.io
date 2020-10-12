@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="常用的循环方式及遍历方法while 循环While 语句包括一个循环条件和一段代码块，只要条件为真，就不断循环执行代码块。 1234567891011while (条件) 语句;&#x2F;&#x2F; 或者while (条件) 语句;&#x2F;&#x2F;举例：var i &#x3D; 0;while (i &lt; 100) &amp;#123;  console.log(&quot;i 当前为：&quot; + i);  i &#x3D; i + 1;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在浏览器中输入网址，按下回车之后发生了什么？">
+<meta property="og:url" content="http://example.com/2020/09/19/ergodic/index.html">
+<meta property="og:site_name" content="Alvxx">
+<meta property="og:description" content="常用的循环方式及遍历方法while 循环While 语句包括一个循环条件和一段代码块，只要条件为真，就不断循环执行代码块。 1234567891011while (条件) 语句;&#x2F;&#x2F; 或者while (条件) 语句;&#x2F;&#x2F;举例：var i &#x3D; 0;while (i &lt; 100) &amp;#123;  console.log(&quot;i 当前为：&quot; + i);  i &#x3D; i + 1;&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-19T05:57:40.000Z">
+<meta property="article:modified_time" content="2020-10-12T07:27:58.897Z">
+<meta property="article:author" content="alv">
+<meta property="article:tag" content="导航">
+<meta property="article:tag" content="分享">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/09/19/ergodic/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在浏览器中输入网址，按下回车之后发生了什么？ | Alvxx</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <script type="text/javascript" src="/js/click_show_text.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Alvxx</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/19/ergodic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.jpg">
+      <meta itemprop="name" content="alv">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alvxx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在浏览器中输入网址，按下回车之后发生了什么？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-19 13:57:40" itemprop="dateCreated datePublished" datetime="2020-09-19T13:57:40+08:00">2020-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-12 15:27:58" itemprop="dateModified" datetime="2020-10-12T15:27:58+08:00">2020-10-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="常用的循环方式及遍历方法"><a href="#常用的循环方式及遍历方法" class="headerlink" title="常用的循环方式及遍历方法"></a>常用的循环方式及遍历方法</h1><h2 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h2><p>While 语句包括一个循环条件和一段代码块，只要条件为真，就不断循环执行代码块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件) 语句;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">while</span> (条件) 语句;</span><br><span class="line"></span><br><span class="line"><span class="comment">//举例：</span></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">100</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;i 当前为：&quot;</span> + i);</span><br><span class="line">  i = i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="do…while-循环"><a href="#do…while-循环" class="headerlink" title="do…while 循环"></a>do…while 循环</h2><p>do…while 循环与 while 循环类似，唯一的区别就是先运行一次循环体，然后判断循环条件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> 语句 <span class="keyword">while</span> (条件</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    语句</span><br><span class="line">&#125; <span class="keyword">while</span> (条件);</span><br><span class="line"></span><br><span class="line"><span class="comment">//举例：</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i); i++;</span><br><span class="line">&#125; <span class="keyword">while</span>(i &lt; x);</span><br></pre></td></tr></table></figure>
+
+<h2 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; filterarray.length; i++) &#123;</span><br><span class="line">  alert(filterarray[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="for…in-循环"><a href="#for…in-循环" class="headerlink" title="for…in 循环"></a>for…in 循环</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;键名：&quot;</span>, i);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;键值：&quot;</span>, obj[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 键名： a // 键值： 1 // 键名： b // 键值： 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 其中 obj为循环的对象， i 为对象中的“键名”。如果对象是数组，那么i就是坐标。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>注意：fo…in 循环一般用于对象的遍历，但是这里有一个坑需要注意：</p>
+<p><font color=#FF0000>任何对象都继承了 Object 对象，或者其它对象，继承的类的属性是默认不可遍历的，for… in 循环遍历的时候会跳过，但是这个属性是可以更改为可以遍历的，那么就会造成遍历到不属于自身的属性。</font></p>
+</li>
+</ul>
+<p>举例来说，对象都继承了 toString 属性，但是 for…in 循环不会遍历到这个属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;; <span class="comment">// toString 属性是存在的obj.toString</span></span><br><span class="line"><span class="comment">// toString() &#123; [native code] &#125;</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(p);</span><br><span class="line">&#125; <span class="comment">// 没有任何输出</span></span><br></pre></td></tr></table></figure>
+
+<p>如果继承的属性是可遍历的，那么就会被 for…in 循环遍历到。但如果只想遍历自身的属性，使用 for…in 的时候，应该结合使用 hasOwnProperty 方法，在循环内部判断一下，某个属性是否为对象自身的属性。否则就可以产生遍历失真的情况</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123; <span class="attr">name</span>: <span class="string">&quot;老张&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="keyword">if</span> (person.hasOwnProperty(key)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="comment">// name</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="map-循环"><a href="#map-循环" class="headerlink" title="map()循环"></a>map()循环</h2><p>map 方法将数组的所有成员依次传入参数函数，然后把每一次的执行结果组成一个新数组返回。</p>
+<p><font color=#ff0000>注意：是返回一个新数组，而不会改变原数组。也不会对空互组进行检测</font></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">numbers.map(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [2, 3, 4]</span></span><br><span class="line"></span><br><span class="line">numbers; <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>map 方法接受一个函数作为参数。该函数调用时，map 方法向它传入三个参数：当前值、当前位置和数组本身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> newArr = arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">elem, index, arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> elem * index;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newArr);</span><br><span class="line"><span class="comment">// [0, 2, 6]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="forEach-循环"><a href="#forEach-循环" class="headerlink" title="forEach 循环"></a>forEach 循环</h2><p>forEach 方法与 map 方法很相似，也是对数组的所有成员依次执行参数函数。但是，forEach 方法不返回值，只用来操作数据。也就是说，如果数组遍历的目的是为了得到返回值，那么使用 map 方法，否则使用 forEach 方法。forEach 的用法与 map 方法一致，参数是一个函数，该函数同样接受三个参数：当前值、当前位置、整个数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item, index);</span><br><span class="line">&#125;); <span class="comment">//[a]=0 [b]=1 [c]=2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="filter-过滤循环"><a href="#filter-过滤循环" class="headerlink" title="filter() 过滤循环"></a>filter() 过滤循环</h2><p>filter 方法用于过滤数组成员，满足条件的成员组成一个新数组返回。它的参数是一个函数，所有数组成员依次执行该函数，返回结果为 true 的成员组成一个新数组返回。该方法不会改变原数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].filter(<span class="function"><span class="keyword">function</span> (<span class="params">elem</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> elem &gt; <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//[4,5]</span></span><br><span class="line"><span class="comment">// 以上将大于三的成员作为一个新数组返回</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="string">&quot;a&quot;</span>, <span class="literal">false</span>];</span><br><span class="line"><span class="keyword">let</span> b = arr.filter(<span class="built_in">Boolean</span>); <span class="comment">//移除所有的false元素</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//[1, &quot;a&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h2><p>它们接受一个函数作为参数，所有数组成员依次执行该函数。该函数接受三个参数：当前成员、当前位置和整个数组，然后返回一个布尔值。不会检测空数组，不会改变原始数组,<br>some 方法是只要一个成员的返回值是 true，则整个 some 方法的返回值就是 true，否则返回 false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">3</span>, <span class="number">10</span>, <span class="number">21</span>, <span class="number">18</span>, <span class="number">30</span>];</span><br><span class="line"><span class="keyword">let</span> a = arr.some(<span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a &gt; <span class="number">18</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h2><p>every 方法则相反，所有成员的返回值都是 true，整个 every 方法才返回 true，否则返回 false。两相比较，some()只要有一个是 true，便返回 true；而 every()只要有一个是 false，便返回 false.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> a = arr.every(<span class="function"><span class="keyword">function</span> (<span class="params">elem, index, arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> elem &gt;= <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>这两个方法在实际开发中，大有可用之处。比如在判定用户是否勾选了不可操作的数据，或者是否勾选了一条可以操作的数据可以使用这两个方法遍历循环数组。</p>
+<h2 id="以上循环特征（相同与不同）"><a href="#以上循环特征（相同与不同）" class="headerlink" title="以上循环特征（相同与不同）"></a>以上循环特征（相同与不同）</h2><h3 id="一：map-，foreach，filter-循环的共同之处"><a href="#一：map-，foreach，filter-循环的共同之处" class="headerlink" title="一：map()，foreach，filter 循环的共同之处"></a>一：map()，foreach，filter 循环的共同之处</h3><p>1.foreach，map，filter 循环中途是无法停止的，总是会将所有成员遍历完。</p>
+<p>2.他们都可以接受第二个参数，用来绑定回调函数内部的 this 变量，将回调函数内部的 this 对象，指向第二个参数，间接操作这个参数（一般是数组）。</p>
+<h3 id="map-循环和-forEach-循环的不同"><a href="#map-循环和-forEach-循环的不同" class="headerlink" title="map()循环和 forEach 循环的不同"></a>map()循环和 forEach 循环的不同</h3><p>forEach 循环没有返回值；map，filter 循环有返回值</p>
+<h3 id="map-循环和-filter-循环都会跳过空位，for-和-while-不会"><a href="#map-循环和-filter-循环都会跳过空位，for-和-while-不会" class="headerlink" title="map()循环和 filter()循环都会跳过空位，for 和 while 不会"></a>map()循环和 filter()循环都会跳过空位，for 和 while 不会</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">2</span>].map(A); <span class="comment">//&quot;a&quot;,&quot;a&quot;,&quot;a&quot;</span></span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">1</span>, <span class="literal">null</span>, <span class="number">2</span>].map(A); <span class="comment">//&quot;a&quot;,&quot;a&quot;,&quot;a&quot;</span></span><br><span class="line"><span class="keyword">let</span> c = [<span class="number">1</span>, , <span class="number">2</span>].map(A); <span class="comment">//&quot;a&quot;,empty,&quot;a&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> d = [<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">2</span>].filter(A); <span class="comment">//[1,undefined,2]</span></span><br><span class="line"><span class="keyword">let</span> e = [<span class="number">1</span>, <span class="literal">null</span>, <span class="number">2</span>].filter(A); <span class="comment">//[1,null,2]</span></span><br><span class="line"><span class="keyword">let</span> f = [<span class="number">1</span>, , <span class="number">2</span>].filter(A); <span class="comment">//1,2</span></span><br><span class="line"><span class="built_in">console</span>.log(a, b, c, d, e, f);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，map方法不会跳过undefined和null，但是会跳过空位。forEach方法也会跳过数组的空位，这里就不举例了。</p>
+<h3 id="some-和every"><a href="#some-和every" class="headerlink" title="some()和every()"></a>some()和every()</h3><p>some()只要有一个是true，便返回true；而every()只要有一个是false，便返回false.</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>赏杯咖啡喝呗！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/logo.jpg" alt="alv 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/logo.jpg" alt="alv 贝宝">
+        <p>贝宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"># 导航</a>
+              <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/19/text/" rel="next" title="在浏览器中输入网址，按下回车之后发生了什么？">
+      在浏览器中输入网址，按下回车之后发生了什么？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F%E5%8F%8A%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">常用的循环方式及遍历方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#while-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.1.</span> <span class="nav-text">while 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do%E2%80%A6while-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.2.</span> <span class="nav-text">do…while 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.3.</span> <span class="nav-text">for 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for%E2%80%A6in-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.4.</span> <span class="nav-text">for…in 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.5.</span> <span class="nav-text">map()循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.6.</span> <span class="nav-text">forEach 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-%E8%BF%87%E6%BB%A4%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.7.</span> <span class="nav-text">filter() 过滤循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some"><span class="nav-number">1.8.</span> <span class="nav-text">some()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#every"><span class="nav-number">1.9.</span> <span class="nav-text">every()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E5%BE%AA%E7%8E%AF%E7%89%B9%E5%BE%81%EF%BC%88%E7%9B%B8%E5%90%8C%E4%B8%8E%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">以上循环特征（相同与不同）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%EF%BC%9Amap-%EF%BC%8Cforeach%EF%BC%8Cfilter-%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%85%B1%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="nav-number">1.10.1.</span> <span class="nav-text">一：map()，foreach，filter 循环的共同之处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-%E5%BE%AA%E7%8E%AF%E5%92%8C-forEach-%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-number">1.10.2.</span> <span class="nav-text">map()循环和 forEach 循环的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-%E5%BE%AA%E7%8E%AF%E5%92%8C-filter-%E5%BE%AA%E7%8E%AF%E9%83%BD%E4%BC%9A%E8%B7%B3%E8%BF%87%E7%A9%BA%E4%BD%8D%EF%BC%8Cfor-%E5%92%8C-while-%E4%B8%8D%E4%BC%9A"><span class="nav-number">1.10.3.</span> <span class="nav-text">map()循环和 filter()循环都会跳过空位，for 和 while 不会</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some-%E5%92%8Cevery"><span class="nav-number">1.10.4.</span> <span class="nav-text">some()和every()</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="alv"
+      src="/images/logo.jpg">
+  <p class="site-author-name" itemprop="name">alv</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Alvxx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Alvxx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/6042593928/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6042593928&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alv</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">7k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="true"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
