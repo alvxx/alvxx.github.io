@@ -227,4 +227,61 @@
         <tag>分享</tag>
       </tags>
   </entry>
+  <entry>
+    <title>前后端分离跨域问题</title>
+    <url>/2020/11/01/Cross%20domain/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">开发环境</th>
+<th align="center">生产环境</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>后台主导</td>
+<td align="center">CORS</td>
+<td align="center">CORS</td>
+</tr>
+<tr>
+<td>前端主导</td>
+<td align="center">proxy代理</td>
+<td align="center">nginx代理</td>
+</tr>
+</tbody></table>
+<h2 id="vue-config-js"><a href="#vue-config-js" class="headerlink" title="vue.config.js"></a>vue.config.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    proxy: <span class="string">&quot;后台接口地址&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>配置完proxy之后，我们请求接口的地址需要是当前前端服务的地址</p>
+<p><a href="http://localhost:3000/">http://localhost:3000</a> -&gt; <a href="http://localhost:8080/">http://localhost:8080</a></p>
+<p>既然要请求自己的地址，那么就没有必要写localhost:8080 直接写/即可</p>
+<p><a href="http://localhost:8080/api/banners">http://localhost:8080/api/banners</a> -&gt; /api/banners</p>
+<p>如果使用代理，那么就没有必要使用.env中去进行我们对应的接口地址的配置。因为不管在什么环境下，都是请求当前前端服务器地址</p>
+<p><strong>如果使用CORS 则需要在build时根据.env去请求不同环境的服务器地址， 如果使用代理，则不需要配置不同地址，全部都使用<code>/api/xxx</code>的形式</strong></p>
+<h2 id="后台配置CORS"><a href="#后台配置CORS" class="headerlink" title="后台配置CORS"></a>后台配置CORS</h2><p>前端需要在axios的配置中配置baseURL。前提需要先配置好.env环境变量文件</p>
+<h3 id="env-development"><a href="#env-development" class="headerlink" title=".env.development"></a>.env.development</h3><p>新建开发环境的env文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">VUE_APP_BASEURL&#x3D;http:&#x2F;&#x2F;开发环境接口地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="env-production"><a href="#env-production" class="headerlink" title=".env.production"></a>.env.production</h3><p>新建生产环境的env文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">VUE_APP_BASEURL&#x3D;http:&#x2F;&#x2F;生产环境接口地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置axios"><a href="#配置axios" class="headerlink" title="配置axios"></a>配置axios</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> _axios = axios.create(&#123;</span><br><span class="line">  baseURL: process.env.VUE_APP_BASEURL</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务器代理"><a href="#服务器代理" class="headerlink" title="服务器代理"></a>服务器代理</h2><p>如果使用代理，则前端不需要再配置BASEURL，因为请求全部走的前端服务（代理）</p>
+<p>接口地址直接写 “/xxx” 相关的内容即可</p>
+<h3 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h3><p>vue.config.js</p>
+<h4 id="如果只有一个后台"><a href="#如果只有一个后台" class="headerlink" title="如果只有一个后台"></a>如果只有一个后台</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    </span><br><span class="line">    proxy: <span class="string">&quot;http://开发环境后台地址&quot;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="如果有多个后台接口"><a href="#如果有多个后台接口" class="headerlink" title="如果有多个后台接口"></a>如果有多个后台接口</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">&quot;/自定义前端请求时前缀&quot;</span>: &#123;</span><br><span class="line">        target: <span class="string">&quot;http://开发环境后台地址&quot;</span>,</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          <span class="string">&quot;^/自定义前端请求时前缀&quot;</span>: <span class="string">&quot;/后台真实前缀&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;/自定义前端请求时前缀&quot;</span>: &#123;</span><br><span class="line">        target: <span class="string">&quot;http://开发环境后台地址&quot;</span>,</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          <span class="string">&quot;^/自定义前端请求时前缀&quot;</span>: <span class="string">&quot;/后台真实前缀&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>注意，在请求时，不需要配置axios的baseURL，也不需要添加任何的域名</em></strong></p>
+<h3 id="生产环境中"><a href="#生产环境中" class="headerlink" title="生产环境中"></a>生产环境中</h3><p>build之后，我们不再有nodejs服务器，只是静态页面（proxy设置只能针对开发环境）</p>
+<p>生产环境需要配置nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen       80;</span><br><span class="line">  server_name  localhost;</span><br><span class="line"></span><br><span class="line">  #charset koi8-r;</span><br><span class="line"></span><br><span class="line">  #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">  location &#x2F; &#123;</span><br><span class="line">    root   html;</span><br><span class="line">    # 只能有一个</span><br><span class="line">    # 没有使用history </span><br><span class="line">    index  index.html index.htm;</span><br><span class="line">    # 使用了history</span><br><span class="line">    try_files $uri $uri&#x2F; &#x2F;index.html;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  # 配置代理</span><br><span class="line">  location &#x2F;服务器前缀 &#123;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;要代理的服务器地址（生产服务器地址）;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  # 配置代理 需要进行rewrite</span><br><span class="line">  location &#x2F;前端请求的前缀 &#123;</span><br><span class="line">    rewrite  ^&#x2F;前端请求前缀&#x2F;(.*)$ &#x2F;后台接口真实前缀&#x2F;$1 break;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;要代理的服务器地址（生产服务器地址）;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">  location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      root   html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
 </search>
