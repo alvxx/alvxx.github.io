@@ -205,4 +205,26 @@
         <tag>分享</tag>
       </tags>
   </entry>
+  <entry>
+    <title>获取用户信息</title>
+    <url>/2020/11/01/User/</url>
+    <content><![CDATA[<h1 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h1><p>获取用户信息有一种方式wx.getUserInfo，但是这个东西不能直接调用，除非用户已经授权。</p>
+<h2 id="用户未授权时"><a href="#用户未授权时" class="headerlink" title="用户未授权时"></a>用户未授权时</h2><p>用户未授权时，我们需要给用户提供一个可点击的按钮，当用户点击该按钮时，我们获取用户的相关userInfo</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">&quot;getUserInfo&quot;</span> <span class="attr">bindgetuserinfo</span>=<span class="string">&quot;getUserInfo&quot;</span>&gt;</span>获取用户信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户授权后，获取到用户信息应该存放在app.globalData中，可以方便其他页面使用</p>
+<a id="more"></a>
+<h2 id="如果用户已经授权"><a href="#如果用户已经授权" class="headerlink" title="如果用户已经授权"></a>如果用户已经授权</h2><p>app.js加载后会判断用户是否授权，如果已经授权，则直接通过wx.getUserInfo获取用户信息，但是如果首页就需要使用用户信息。那么我们就需要在首页进行操作</p>
+<ol>
+<li>判断app.globalData中是否有userInfo数据，如果没有，则设置给app一个方法，等待app.js中得到对应的userInfo调用该方法，并把结果作为参数传递</li>
+<li>如果有，则直接使用</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">getUserInfo (e) &#123;</span><br><span class="line">  <span class="comment">// 点击按钮获取到用户权限并获取用户信息</span></span><br><span class="line">  <span class="comment">// 把数据设置给app.js中的globalData 方便其他页面取用</span></span><br><span class="line">  app.globalData.userInfo = e.detail.userInfo</span><br><span class="line">  <span class="comment">// 把数据设置到当前页面，方便当前页面使用</span></span><br><span class="line">  <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">    userInfo: e.detail.userInfo,</span><br><span class="line">    hasUserInfo: <span class="literal">true</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
 </search>

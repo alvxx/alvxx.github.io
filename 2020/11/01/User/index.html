@@ -20,15 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Alvxx">
-<meta property="og:url" content="http://example.com/archives/2020/09/index.html">
+  <meta name="description" content="获取用户信息获取用户信息有一种方式wx.getUserInfo，但是这个东西不能直接调用，除非用户已经授权。 用户未授权时用户未授权时，我们需要给用户提供一个可点击的按钮，当用户点击该按钮时，我们获取用户的相关userInfo 1&lt;button open-type&#x3D;&quot;getUserInfo&quot; bindgetuserinfo&#x3D;&quot;getUserInfo&quot;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取用户信息">
+<meta property="og:url" content="http://example.com/2020/11/01/User/index.html">
 <meta property="og:site_name" content="Alvxx">
+<meta property="og:description" content="获取用户信息获取用户信息有一种方式wx.getUserInfo，但是这个东西不能直接调用，除非用户已经授权。 用户未授权时用户未授权时，我们需要给用户提供一个可点击的按钮，当用户点击该按钮时，我们获取用户的相关userInfo 1&lt;button open-type&#x3D;&quot;getUserInfo&quot; bindgetuserinfo&#x3D;&quot;getUserInfo&quot;&amp;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:09:16.823Z">
 <meta property="article:author" content="alv">
+<meta property="article:tag" content="导航">
+<meta property="article:tag" content="分享">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2020/09/">
+<link rel="canonical" href="http://example.com/2020/11/01/User/">
 
 
 <script id="page-configurations">
@@ -36,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Alvxx</title>
+  <title>获取用户信息 | Alvxx</title>
   
 
 
@@ -186,70 +192,140 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 3 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/01/User/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.jpg">
+      <meta itemprop="name" content="alv">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alvxx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          获取用户信息
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-01 00:00:00 / 修改时间：16:09:16" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>674</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <h1 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h1><p>获取用户信息有一种方式wx.getUserInfo，但是这个东西不能直接调用，除非用户已经授权。</p>
+<h2 id="用户未授权时"><a href="#用户未授权时" class="headerlink" title="用户未授权时"></a>用户未授权时</h2><p>用户未授权时，我们需要给用户提供一个可点击的按钮，当用户点击该按钮时，我们获取用户的相关userInfo</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">&quot;getUserInfo&quot;</span> <span class="attr">bindgetuserinfo</span>=<span class="string">&quot;getUserInfo&quot;</span>&gt;</span>获取用户信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户授权后，获取到用户信息应该存放在app.globalData中，可以方便其他页面使用</p>
+<a id="more"></a>
+<h2 id="如果用户已经授权"><a href="#如果用户已经授权" class="headerlink" title="如果用户已经授权"></a>如果用户已经授权</h2><p>app.js加载后会判断用户是否授权，如果已经授权，则直接通过wx.getUserInfo获取用户信息，但是如果首页就需要使用用户信息。那么我们就需要在首页进行操作</p>
+<ol>
+<li>判断app.globalData中是否有userInfo数据，如果没有，则设置给app一个方法，等待app.js中得到对应的userInfo调用该方法，并把结果作为参数传递</li>
+<li>如果有，则直接使用</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">getUserInfo (e) &#123;</span><br><span class="line">  <span class="comment">// 点击按钮获取到用户权限并获取用户信息</span></span><br><span class="line">  <span class="comment">// 把数据设置给app.js中的globalData 方便其他页面取用</span></span><br><span class="line">  app.globalData.userInfo = e.detail.userInfo</span><br><span class="line">  <span class="comment">// 把数据设置到当前页面，方便当前页面使用</span></span><br><span class="line">  <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">    userInfo: e.detail.userInfo,</span><br><span class="line">    hasUserInfo: <span class="literal">true</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-19T13:57:40+08:00"
-              content="2020-09-19">
-          09-19
-        </time>
+    
+    
+    
+        <div class="reward-container">
+  <div>赏杯咖啡喝呗！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/logo.jpg" alt="alv 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/logo.jpg" alt="alv 贝宝">
+        <p>贝宝</p>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/19/ergodic/" itemprop="url">
-            <span itemprop="name">常用的循环方式及遍历方法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-19T13:57:40+08:00"
-              content="2020-09-19">
-          09-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/19/text/" itemprop="url">
-            <span itemprop="name">在浏览器中输入网址，按下回车之后发生了什么？</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"># 导航</a>
+              <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/19/ergodic/" rel="prev" title="常用的循环方式及遍历方法">
+      <i class="fa fa-chevron-left"></i> 常用的循环方式及遍历方法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -302,6 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">获取用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%9C%AA%E6%8E%88%E6%9D%83%E6%97%B6"><span class="nav-number">1.1.</span> <span class="nav-text">用户未授权时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E7%94%A8%E6%88%B7%E5%B7%B2%E7%BB%8F%E6%8E%88%E6%9D%83"><span class="nav-number">1.2.</span> <span class="nav-text">如果用户已经授权</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
